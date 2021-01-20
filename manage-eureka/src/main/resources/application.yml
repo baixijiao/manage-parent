@@ -4,6 +4,10 @@ server:
 spring:
   profiles:
     active: dev
+  security:
+    user:
+      name: eureka
+      password: eureka
 
 eureka:
   client:
