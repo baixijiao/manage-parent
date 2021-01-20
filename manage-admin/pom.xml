@@ -17,8 +17,9 @@
     <description>springboot admin</description>
 
     <properties>
-        <spring-boot-dependencies.version>2.3.0.RELEASE</spring-boot-dependencies.version>
-        <spring-boot-admin-starter-server.version>2.3.0</spring-boot-admin-starter-server.version>
+        <spring-boot-dependencies.version>2.1.6.RELEASE</spring-boot-dependencies.version>
+        <spring-cloud-dependencies.version>Finchley.RELEASE</spring-cloud-dependencies.version>
+        <spring-boot-admin-starter-server.version>2.1.6</spring-boot-admin-starter-server.version>
     </properties>
 
 
@@ -60,14 +61,29 @@
             <artifactId>spring-boot-admin-starter-server</artifactId>
             <version>${spring-boot-admin-starter-server.version}</version>
         </dependency>
+
+        <!--增加 Eureka 的依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring Boot -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Spring Cloud -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

@@ -4,3 +4,10 @@ server:
 spring:
   profiles:
     active: dev
+
+# Spring Boot Admin 本身也会注册到 Eureka，在监控列表中当然也包括对自身监控，可以暴露所有端点信息，不然在页面中无法查看监控数据：
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

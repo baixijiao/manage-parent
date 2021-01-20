@@ -1,2 +1,11 @@
 server:
   port: 8100
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8101
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ipAddress}:${server.port}
+    status-page-url: http://${spring.cloud.client.ipAddress}:${server.port}
