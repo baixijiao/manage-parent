@@ -67,6 +67,15 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+        <!--
+        Eureka client程序中，配置${spring.cloud.client.ipAddress}不生效
+        在SpringCloud 2.x 已经改成 ${spring.cloud.client.ip-address} 了
+         ${spring.cloud.client.ip-address} ,这个类在# spring-cloud-commons 中
+        -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-commons</artifactId>
+        </dependency>
     </dependencies>
 
     <dependencyManagement>
