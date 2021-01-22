@@ -23,6 +23,7 @@
     <modules>
         <module>manage-admin</module>
         <module>manage-eureka</module>
+        <module>manage-turbine</module>
     </modules>
 
 </project>
