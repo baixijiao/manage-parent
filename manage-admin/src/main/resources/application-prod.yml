@@ -1,12 +1,3 @@
 server:
   port: 8000
 
-eureka:
-  client:
-    service-url:
-      # 浏览器访问不需要eureka，但配置必须要
-      defaultZone: http://eureka:eureka@localhost:8001/eureka
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
-    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}

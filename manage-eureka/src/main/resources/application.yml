@@ -1,7 +1,9 @@
 server:
-  port: 8101
+  port: 8761
 
 spring:
+  application:
+    name: eureka
   profiles:
     active: dev
   security:
