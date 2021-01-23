@@ -1,0 +1,37 @@
+server:
+  port: 8763
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    # config相关配置
+    config:
+      server:
+        # 使用本地配置文件，必须配置bootstrap为true
+        bootstrap: true
+        native:
+          search-locations: classpath:/shared
+  main:
+    # 当出现相同名字的类进行注册时，准许覆盖注册;  解决【A bean with that name has already been defined in null and overriding is disabled.】问题
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      # 浏览器访问不需要eureka，但配置必须要
+      defaultZone: http://eureka:eureka@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}
+
+# Spring Boot Zuul 本身也会注册到 Eureka，在监控列表中当然也包括对自身监控，可以暴露所有端点信息，不然在页面中无法查看监控数据：
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

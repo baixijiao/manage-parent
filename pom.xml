@@ -25,6 +25,7 @@
         <module>manage-eureka</module>
         <module>manage-turbine</module>
         <module>manage-zuul</module>
+        <module>manage-config</module>
     </modules>
 
 </project>
