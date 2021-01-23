@@ -1,0 +1,40 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: zuul
+  profiles:
+    active: dev
+  main:
+    # 当出现相同名字的类进行注册时，准许覆盖注册;  解决【A bean with that name has already been defined in null and overriding is disabled.】问题
+    allow-bean-definition-overriding: true
+
+eureka:
+  client:
+    service-url:
+      # 浏览器访问不需要eureka，但配置必须要
+      defaultZone: http://eureka:eureka@localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    status-page-url: http://${spring.cloud.client.ip-address}:${server.port}
+
+# Spring Boot Zuul 本身也会注册到 Eureka，在监控列表中当然也包括对自身监控，可以暴露所有端点信息，不然在页面中无法查看监控数据：
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+zuul:
+  routes:
+    zyjkapi:
+      path: /zyjkapi/**
+      serviceId: zyjk-client
+    #      url: http://localhost:8762  #这样写不会做负载均衡
+    #      serviceId: zyjkapi-v1
+    seeyonapi:
+      path: /seeyonapi/**
+      serviceId: seeyon-client
+  prefix: /v1  #加个前缀
